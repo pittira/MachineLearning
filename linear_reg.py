@@ -57,21 +57,20 @@ def test_reg(w_star):
     rmse = np.sqrt(mse)
     print("RMSE:", rmse)
     # Convert y_actual from DataFrame to 1D array
-    # y_actual_array = y_actual.to_numpy().flatten()
+    y_actual_array = y_actual.to_numpy().flatten()
+    x = np.arange(len(y_actual_array))
 
-    # plt.figure(figsize=(7, 5))
-    # plt.scatter(y_actual_array, y_pred)
+    plt.figure(figsize=(12, 6))
 
-    # # Reference line y = x
-    # minimum = min(y_actual_array.min(), y_pred.min())
-    # maximum = max(y_actual_array.max(), y_pred.max())
+    plt.plot(x, y_actual_array, label="Actual Weekly Sales")
+    plt.plot(x, y_pred.flatten(), label="Predicted Weekly Sales")
 
-    # plt.plot([minimum, maximum], [minimum, maximum])
+    plt.xlabel("Observation")
+    plt.ylabel("Weekly Sales")
+    plt.title("Actual vs Predicted Weekly Sales")
+    plt.legend()
 
-    # plt.xlabel("Actual Weekly Sales")
-    # plt.ylabel("Predicted Weekly Sales")
-    # plt.title("Actual vs Predicted Weekly Sales")
-    # plt.show()
+    plt.show()
 
     return y_pred
 
